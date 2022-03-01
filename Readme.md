@@ -4,7 +4,7 @@ An Open-Source Package for Automatic Disease Diagnosis.
 
 ## Overview
 
-Due to the lack of open source for existing RL-base automated diagnosis methods. It's hard to make a comparison for different methods. OpenMedicalChatbox integrates several current diagnostic methods and datasets. The documentation and tutorial of OpenMedicalChatbox are available at
+Due to the lack of open source for existing RL-base automated diagnosis methods. It's hard to make a comparison for different methods. OpenMedicalChatbox integrates several current diagnostic methods and datasets.
 
 ## Dataset
 
