@@ -4,11 +4,11 @@ An Open-Source Package for Automatic Disease Diagnosis.
 
 ## Overview
 
-Due to the lack of open source for existing RL-base automated diagnosis methods. It's hard to make a comparison for different methods. OpenMedicalChatbox integrates several current diagnostic methods and datasets. The documentation and tutorial of OpenMedicalChatbox are available at
+Due to the lack of open source for existing RL-base automated diagnosis methods. It's hard to make a comparison for different methods. OpenMedicalChatbox integrates several current diagnostic methods and datasets.
 
 ## Dataset
 
-At [here](./Data/Readme.md), we show all the mentioned datasets in existing medical methods, including MZ-4, Dxy, MZ-10 and a simulated dataset based on [Symcat](www.symcat.com). In **goal.set** in their folders, explicit symptoms, implicit symptoms and diagnosis given by doctors are recorded for each sample. Also, we provide the corresponding tools to extend them for each methods. For further information, you can refer to the paper.
+At [here](./Data/Readme.md), we show all the mentioned datasets in existing medical methods, including MZ-4, Dxy, MZ-10 and a simulated dataset based on [Symcat](http://www.symcat.com/). In **goal.set** in their folders, explicit symptoms, implicit symptoms and diagnosis given by doctors are recorded for each sample. Also, we provide the corresponding tools to extend them for each methods. 
 
 Here is the overview of datasets.
 
@@ -23,7 +23,7 @@ Here is the overview of datasets.
 
 ## Methods
 
-Besides, we reproduce several mainstream models for comparison.
+Besides, we reproduce several mainstream models for comparison. For further information, you can refer to the [paper](./paper/).
 
 1. **[Flat-DQN](http://www.aclweb.org/anthology/P18-2033)**: This is the baseline DQN agent, which has one layer policy and an action space including both symptoms and diseases. 
 2. **[HRL-pretrained](https://ojs.aaai.org/index.php/AAAI/article/view/11902)**: This is a hierarchical model. The low level policy is pre-trained first and then the high level policy is trained. Besides, there is no disease classifier and the diagnosis is made by workers. 
@@ -36,9 +36,14 @@ Besides, we reproduce several mainstream models for comparison.
 
 ## QuickStart
 
-1. Redirect the parameter **file0**  to the dataset needed. Note that if you use the KR-DS model, please redirect to "dataset_dxy" folder, and HRL dataset use the "HRL" folder.
-2. Tune the parameter as you need.
-3. Run the file or use the code below
+1. Install the packages
+```python 
+pip install -r requirement.txt
+```
+
+2. Redirect the parameter **file0**  to the dataset needed. Note that if you use the KR-DS model, please redirect to "dataset_dxy" folder, and HRL dataset use the "HRL" folder.
+3. Tune the parameter as you need.
+4. Run the file or use the code below
 
 DQN
 
