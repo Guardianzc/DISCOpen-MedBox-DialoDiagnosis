@@ -23,7 +23,7 @@ Here is the overview of datasets.
 
 ## Methods
 
-Besides, we reproduce several mainstream models for comparison. For further information, you can refer to the paper[./paper/].
+Besides, we reproduce several mainstream models for comparison. For further information, you can refer to the [paper](./paper/).
 
 1. **[Flat-DQN](http://www.aclweb.org/anthology/P18-2033)**: This is the baseline DQN agent, which has one layer policy and an action space including both symptoms and diseases. 
 2. **[HRL-pretrained](https://ojs.aaai.org/index.php/AAAI/article/view/11902)**: This is a hierarchical model. The low level policy is pre-trained first and then the high level policy is trained. Besides, there is no disease classifier and the diagnosis is made by workers. 
