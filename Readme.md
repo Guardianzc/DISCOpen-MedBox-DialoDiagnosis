@@ -36,9 +36,14 @@ Besides, we reproduce several mainstream models for comparison. For further info
 
 ## QuickStart
 
-1. Redirect the parameter **file0**  to the dataset needed. Note that if you use the KR-DS model, please redirect to "dataset_dxy" folder, and HRL dataset use the "HRL" folder.
-2. Tune the parameter as you need.
-3. Run the file or use the code below
+1. Install the packages
+```python 
+pip install -r requirement.txt
+```
+
+2. Redirect the parameter **file0**  to the dataset needed. Note that if you use the KR-DS model, please redirect to "dataset_dxy" folder, and HRL dataset use the "HRL" folder.
+3. Tune the parameter as you need.
+4. Run the file or use the code below
 
 DQN
 
