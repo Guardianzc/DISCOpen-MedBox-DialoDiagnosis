@@ -354,7 +354,7 @@ class Agent(object):
                 self.best_success_rate_test = self.success_rate_test
                 self.best_avg_turns_test = self.avg_turns_test
                 self.save(self.path, epoch)
-                pickle.dump(file=open('./records/' + self.parameter['model_savepath'].split('/')[-2] + '/' + self.run_time + '.p', 'wb'), obj=record)
+                pickle.dump(file=open( self.parameter['model_savepath'].split('/')[-2] + '/records/' + '/' + self.run_time + '.p', 'wb'), obj=record)
             
             # write
             #wandb.log({'success_rate' : self.success_rate, 'avg_turns' : self.avg_turns, 'avg_object' : self.avg_object, 'avg_recall' : self.avg_recall, 'avg_out': self.avg_out, \
