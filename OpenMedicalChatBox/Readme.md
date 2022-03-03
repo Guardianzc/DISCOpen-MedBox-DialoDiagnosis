@@ -8,14 +8,19 @@ An Open-Source Package for Automatic Disease Diagnosis.
 
 ```python
 class Flat_DQN:
-    def __init__(self, dataset_path, model_save_path, model_load_path, lr = 0.0005, cuda_idx = 0, train_mode = True, max_turn = 10, reward_for_not_come_yet = 0, \ reward_for_success = 20, reward_for_fail = 0, reward_for_inform_right_symptom = 6, reward_for_reach_max_turn = -100, reward_for_repeated_action = -4, epoch_number = 5000, \ epoch_size = 100, experience_replay_size = 10000, batch_size = 100, discount_factor = 1, warm_start = False, warm_start_number = 30, greedy = 0.1):
+    def __init__(self, dataset_path, model_save_path, model_load_path, lr = 0.0005, cuda_idx = 0, train_mode = True, max_turn = 10, 
+    \reward_for_not_come_yet = 0, \ reward_for_success = 20, reward_for_fail = 0, reward_for_inform_right_symptom = 6, reward_for_reach_max_turn = -100, reward_for_repeated_action = -4, \
+    epoch_number = 5000, epoch_size = 100, experience_replay_size = 10000, batch_size = 100, \
+    discount_factor = 1, warm_start = False, warm_start_number = 30, greedy = 0.1):
 ```
 
 ### HRL
 
 ```python
 class HRL:
-    def __init__(self, dataset_path, model_save_path, model_load_path, lr = 0.0005, groups = 4, cuda_idx = 0, train_mode = True, max_turn = 10, reward_for_not_come_yet = 0, \ reward_for_success = 20, reward_for_fail = 0, reward_for_inform_right_symptom = 30, reward_for_reach_max_turn = -100, reward_for_repeated_action = -4, epoch_number = 5000, \ epoch_size = 100, experience_replay_size = 10000, batch_size = 100, discount_factor = 1, discount_factor_worker = 0.9, greedy = 0.1, reward_shaping = 1):
+    def __init__(self, dataset_path, model_save_path, model_load_path, lr = 0.0005, groups = 4, cuda_idx = 0, train_mode = True, max_turn = 10, reward_for_not_come_yet = 0, \
+    reward_for_success = 20, reward_for_fail = 0, reward_for_inform_right_symptom = 30, reward_for_reach_max_turn = -100, reward_for_repeated_action = -4, \
+    epoch_number = 5000, epoch_size = 100, experience_replay_size = 10000, batch_size = 100, discount_factor = 1, discount_factor_worker = 0.9, greedy = 0.1, reward_shaping = 1):
 ```
 
 ### GAMP
@@ -29,7 +34,9 @@ class GAMP:
 
 ```python
 class KRDS:
-    def __init__(self, dataset_path, model_save_path, model_load_path, cuda_idx, train_mode = True, greedy = 0.1, epoch_number = 5000, max_turn = 10, experience_replay_size = 10000, batch_size = 32, reward_for_not_come_yet = 0, reward_for_success = 8, reward_for_fail = 0, reward_for_inform_right_symptom = 6, reward_for_reach_max_turn = -100, reward_for_repeated_action = -4, lr = 0.01, discount_factor = 0.9, warm_start = True, warm_start_number = 5000):
+    def __init__(self, dataset_path, model_save_path, model_load_path, cuda_idx, train_mode = True, greedy = 0.1, epoch_number = 5000, max_turn = 10, \
+    experience_replay_size = 10000, batch_size = 32, reward_for_not_come_yet = 0, reward_for_success = 8, reward_for_fail = 0, reward_for_inform_right_symptom = 6, \
+    reward_for_reach_max_turn = -100, reward_for_repeated_action = -4, lr = 0.01, discount_factor = 0.9, warm_start = True, warm_start_number = 5000):
 ```
 
 ### REFUEL
@@ -37,7 +44,8 @@ class KRDS:
 ```python
 class REFUEL:
     def __init__(self, dataset_path, model_save_path, model_load_path, cuda_idx, train_mode = True, epoch_number = 5000, batch_size = 64, max_turn = 10, \
-    reward_shaping = 0.25,  reward_for_success = 20, reward_for_fail = -1,  reward_for_reach_max_turn = -1, rebuild_factor = 10, entropy_factor = 0.007, discount_factor = 0.99, lr = 0.0001):
+    reward_shaping = 0.25,  reward_for_success = 20, reward_for_fail = -1,  reward_for_reach_max_turn = -1, rebuild_factor = 10, \
+    entropy_factor = 0.007, discount_factor = 0.99, lr = 0.0001):
 ```
 
 
