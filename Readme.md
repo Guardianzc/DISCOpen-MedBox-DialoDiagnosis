@@ -38,10 +38,9 @@ Besides, we reproduce several mainstream models for comparison. For further info
 
 1. Install the packages
 ```python 
-pip install -r requirement.txt
+pip install OpenMedicalChatBox
 ```
-
-2. Cloning this repo
+   or Cloning this repo
 
 ```python
 git clone https://github.com/Guardianzc/OpenMedicalChatBox.git
