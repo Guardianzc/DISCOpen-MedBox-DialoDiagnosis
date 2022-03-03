@@ -108,3 +108,5 @@ OpenMedicalChatBox.egg-info/PKG-INFO
 OpenMedicalChatBox.egg-info/requires.txt
 OpenMedicalChatBox.egg-info/SOURCES.txt
 OpenMedicalChatBox.egg-info/top_level.txt
+dist/OpenMedicalChatBox-1.0.0-py3-none-any.whl
+dist/OpenMedicalChatBox-1.0.0.tar.gz
