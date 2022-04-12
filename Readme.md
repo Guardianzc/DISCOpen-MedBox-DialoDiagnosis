@@ -48,7 +48,7 @@ cd OpenMedicalChatBox
 python setup.py install
 ```
 
-After installation, you can try running  ` demo.py` to check if OpenMedicalChatBox works well
+After installation, you can choose the dataset and method, then try running  ` demo.py` to check if OpenMedicalChatBox works well
 
 ```
 python demo.py
