@@ -277,8 +277,8 @@ class Agent(object):
             if self.best_success_rate_test < self.success_rate_test:
                 self.best_success_rate_test = self.success_rate_test
                 self.best_avg_turns_test = self.avg_turns_test
-                self.save(self.path, epoch)
-                pickle.dump(file=open('./records/' + self.parameter['model_savepath'].split('/')[-2] + '/' + self.run_time + '.p', 'wb'), obj=record)
+                self.save(self.path, epoch, record)
+                
             
             # write
             #wandb.log({'success_rate' : self.success_rate, 'avg_turns' : self.avg_turns, 'avg_object' : self.avg_object, 'avg_recall' : avg_recall, 'avg_out': self.avg_out, \
@@ -286,10 +286,10 @@ class Agent(object):
         self.save(self.path, epoch)    
         return self.best_success_rate_test
     
-    def save(self, path, epoch):
+    def save(self, path, epoch, record):
         model_file_name = os.path.join(path, "s" + str(float(self.success_rate_test)) + "_obj" + str(self.avg_object) + "_t" + str(self.avg_turns_test)\
                     + "_mr" + str(self.avg_recall_test) + "_outs" + str(self.avg_outs_test) + "_e-" + str(epoch) + ".pkl")
-
+        pickle.dump(file=open(model_file_name.replace('.pkl', '.p'), 'wb'), obj=record)
         torch.save(self.current_REFUEL.state_dict(), model_file_name)
  
     def load(self, path):

@@ -54,8 +54,8 @@ class GAMP:
         else:
             agent.load(self.parameter['load_path'])
             #agent.load(parameter['model_savepath'] )
-            success_rate_test, avg_turns_test, avg_object_test, hits, outs = agent.simulation_epoch(mode = 'test', epoch = 0, simulate_epoch_number = 1)
-            print(success_rate_test, avg_turns_test, avg_object_test, hits, outs)
+            success_rate_test, avg_turns_test, avg_object_test, hits, outs, record = agent.simulation_epoch(mode = 'test', epoch = 0, simulate_epoch_number = 1)
+            print("SC = ",success_rate_test, " AVTurn =  ", avg_turns_test, " avg_object = ", avg_object_test, " hits = ", hits, " outs = ", outs)
 
 if __name__ == '__main__':
 

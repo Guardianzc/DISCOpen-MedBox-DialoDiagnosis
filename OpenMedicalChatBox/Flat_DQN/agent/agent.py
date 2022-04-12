@@ -154,8 +154,8 @@ class Agent(object):
             state = reduced_state_to_representation_last(state=state, slot_set=self.slot_set, parameter = self.parameter) # sequence representation.
             next_state = reduced_state_to_representation_last(state=next_state, slot_set=self.slot_set, parameter = self.parameter)
         else:
-            state = state_to_representation_last(state=state, action_set=self.action_set, slot_set=self.slot_set, disease_symptom=self.disease_symptom, max_turn=self.parameter["max_turn"])
-            next_state = state_to_representation_last(state=next_state, action_set=self.action_set, slot_set=self.slot_set, disease_symptom=self.disease_symptom, max_turn=self.parameter["max_turn"])
+            state = state_to_representation_last(state=state, slot_set=self.slot_set, disease_symptom=self.disease_symptom, max_turn=self.parameter["max_turn"])
+            next_state = state_to_representation_last(state=next_state, slot_set=self.slot_set, disease_symptom=self.disease_symptom, max_turn=self.parameter["max_turn"])
         self.experience_replay_pool.append((state, agent_action, reward, next_state, episode_over))
 
     def flush_pool(self):

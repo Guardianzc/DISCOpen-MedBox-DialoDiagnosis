@@ -7,7 +7,6 @@ import random
 import json
 import torch
 from .agent import Agent
-os.chdir(os.path.dirname(sys.argv[0]))
 class REFUEL:
     def __init__(self, dataset_path, model_save_path, model_load_path, cuda_idx, train_mode = True, epoch_number = 5000, batch_size = 64, max_turn = 10,\
         reward_shaping = 0.25,  reward_for_success = 20, reward_for_fail = -1,  reward_for_reach_max_turn = -1, \
@@ -67,9 +66,9 @@ class REFUEL:
         else:
             #agent.load(parameter['model_savepath'] + '/newest/')
             agent.load(parameter['model_loadpath'] )
-            success_rate_test, avg_turns_test, avg_object_test, avg_recall, avg_out = agent.simulation_epoch(mode = 'test', epoch = 0, simulate_epoch_number = 1)
+            success_rate_test, avg_turns_test, avg_object_test, avg_recall, avg_out, record = agent.simulation_epoch(mode = 'test', epoch = 0, simulate_epoch_number = 1)
             # self.success_rate, self.avg_turns, self.avg_object, self.avg_recall, self.avg_out
-            print(success_rate_test, avg_turns_test, avg_object_test, avg_recall, avg_out)
+            print("SC = ",success_rate_test, " AVTurn =  ", avg_turns_test, " avg_object = ", avg_object_test, " avg_recall = ", avg_recall, " avg_out = ", avg_out)
 
 if __name__ == '__main__':
     Refuel_test = REFUEL(dataset_path = 'D:\Documents\DISC\OpenMedicalChatBox\Data\mz10\\', model_save_path = './simulate', model_load_path = './simulate', cuda_idx = 1, train_mode = True)
