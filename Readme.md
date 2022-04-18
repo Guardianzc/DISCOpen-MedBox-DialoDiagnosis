@@ -119,7 +119,6 @@ We show the accuracy for disease diagnosis (**Acc.**), recall for symptom recove
 ## Reference
 
 - [Task-oriented Dialogue System for Automatic Diagnosis](https://aclanthology.org/P18-2033.pdf)
-- [Context-Aware Symptom Checking for Disease Diagnosis Using Hierarchical Reinforcement Learning](https://ojs.aaai.org/index.php/AAAI/article/view/11902)
 - [REFUEL: Exploring Sparse Features in Deep Reinforcement Learning for Fast Disease Diagnosis](https://proceedings.neurips.cc/paper/2018/hash/b5a1d925221b37e2e399f7b319038ba0-Abstract.html)
 - [End-to-End Knowledge-Routed Relational Dialogue System for Automatic Diagnosis](https://ojs.aaai.org/index.php/AAAI/article/view/4722)
 - [Generative Adversarial Regularized Mutual Information Policy Gradient Framework for Automatic Diagnosis](https://ojs.aaai.org/index.php/AAAI/article/view/5456)
