@@ -115,19 +115,6 @@ We show the accuracy for disease diagnosis (**Acc.**), recall for symptom recove
 | HRL                     | 0.779 | 0.424 | 8.61  | 0.735 | 0.229 | 5.08  | 0.556 | 0.295 | 6.99  |
 | Classifier Upper Bound  | 0.846 |  --   |  --   | 0.755 |  --   |  --   | 0.612 |  --   |  --   |
 
--  In synthetic dataset
-
-| Model                  | Acc.  | M.R.  | Avg.T |
-| ---------------------- | ----- | ----- | ----- |
-| Flat-DQN               | 0.343 | 0.023 | 1.23  |
-| KR-DS                  | 0.357 | 0.388 | 6.24  |
-| REFUEL                 | 0.347 | 0.161 | 4.56  |
-| GAMP                   | 0.267 | 0.077 | 1.36  |
-| Classifier Lower Bound | 0.308 | --    | --    |
-| HRL-pretrained         | 0.452 | --    | 3.42  |
-| HRL                    | 0.504 | 0.495 | 6.48  |
-| Classifier Upper Bound | 0.781 | --    | --    |
-
 
 
 ## Reference
