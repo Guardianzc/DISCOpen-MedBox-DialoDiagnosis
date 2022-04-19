@@ -26,11 +26,10 @@ Here is the overview of datasets.
 Besides, we reproduce several mainstream models for comparison. For further information, you can refer to the [paper](./paper/).
 
 1. **[Flat-DQN](http://www.aclweb.org/anthology/P18-2033)**: This is the baseline DQN agent, which has one layer policy and an action space including both symptoms and diseases. 
-2. **[HRL-pretrained](https://ojs.aaai.org/index.php/AAAI/article/view/11902)**: This is a hierarchical model. The low level policy is pre-trained first and then the high level policy is trained. Besides, there is no disease classifier and the diagnosis is made by workers. 
-3. **[REFUEL](https://proceedings.neurips.cc/paper/2018/hash/b5a1d925221b37e2e399f7b319038ba0-Abstract.html)**: This is a reinforcement learning method with reward shaping and feature rebuilding. It uses a branch to reconstruct the symptom vector to guide the policy gradient. 
-4. **[KR-DS](https://ojs.aaai.org/index.php/AAAI/article/view/4722)**: This is an improved method based on Flat-DQN. It integrates a relational refinement branch and a knowledge-routed graph to strengthen the relationship between disease and symptoms. Here we adjust the code from [fantasySE](https://github.com/fantasySE/Dialogue-System-for-Automatic-Diagnosis).
-5. **[GAMP](https://ojs.aaai.org/index.php/AAAI/article/view/5456)**: This is a GAN-based policy gradient network. It uses the GAN network to avoid generating randomized trials of symptom, and add mutual information to encourage the model to select the most discriminative symptoms.
-6. **[HRL](https://arxiv.org/abs/2004.14254)**: This is a new hierarchical policy we purposed for diagnosis. The high level policy consists of a master model that is responsible for triggering a low level model, the low level policy consists of several symptom checkers and a disease classifier. Also, we try not to divide symptoms into different group (Denoted as **HRL (w/o grouped)**) to demonstrate the strength of two-level structure and remove the separate disease discriminator (Denoted as **HRL (w/o discriminator)**) to show the effect of disease grouping in symptom information extraction.
+2. **[REFUEL](https://proceedings.neurips.cc/paper/2018/hash/b5a1d925221b37e2e399f7b319038ba0-Abstract.html)**: This is a reinforcement learning method with reward shaping and feature rebuilding. It uses a branch to reconstruct the symptom vector to guide the policy gradient. 
+3. **[KR-DS](https://ojs.aaai.org/index.php/AAAI/article/view/4722)**: This is an improved method based on Flat-DQN. It integrates a relational refinement branch and a knowledge-routed graph to strengthen the relationship between disease and symptoms. Here we adjust the code from [fantasySE](https://github.com/fantasySE/Dialogue-System-for-Automatic-Diagnosis).
+4. **[GAMP](https://ojs.aaai.org/index.php/AAAI/article/view/5456)**: This is a GAN-based policy gradient network. It uses the GAN network to avoid generating randomized trials of symptom, and add mutual information to encourage the model to select the most discriminative symptoms.
+5. **[HRL](https://arxiv.org/abs/2004.14254)**: This is a new hierarchical policy we purposed for diagnosis. The high level policy consists of a master model that is responsible for triggering a low level model, the low level policy consists of several symptom checkers and a disease classifier. Also, we try not to divide symptoms into different group (Denoted as **HRL (w/o grouped)**) to demonstrate the strength of two-level structure and remove the separate disease discriminator (Denoted as **HRL (w/o discriminator)**) to show the effect of disease grouping in symptom information extraction.
 
 
 
@@ -48,7 +47,7 @@ cd OpenMedicalChatBox
 python setup.py install
 ```
 
-After installation, you can try running  ` demo.py` to check if OpenMedicalChatBox works well
+After installation, you can choose the dataset and method, then try running  ` demo.py` to check if OpenMedicalChatBox works well
 
 ```
 python demo.py
@@ -117,25 +116,11 @@ We show the accuracy for disease diagnosis (**Acc.**), recall for symptom recove
 | HRL                     | 0.779 | 0.424 | 8.61  | 0.735 | 0.229 | 5.08  | 0.556 | 0.295 | 6.99  |
 | Classifier Upper Bound  | 0.846 |  --   |  --   | 0.755 |  --   |  --   | 0.612 |  --   |  --   |
 
--  In synthetic dataset
-
-| Model                  | Acc.  | M.R.  | Avg.T |
-| ---------------------- | ----- | ----- | ----- |
-| Flat-DQN               | 0.343 | 0.023 | 1.23  |
-| KR-DS                  | 0.357 | 0.388 | 6.24  |
-| REFUEL                 | 0.347 | 0.161 | 4.56  |
-| GAMP                   | 0.267 | 0.077 | 1.36  |
-| Classifier Lower Bound | 0.308 | --    | --    |
-| HRL-pretrained         | 0.452 | --    | 3.42  |
-| HRL                    | 0.504 | 0.495 | 6.48  |
-| Classifier Upper Bound | 0.781 | --    | --    |
-
 
 
 ## Reference
 
 - [Task-oriented Dialogue System for Automatic Diagnosis](https://aclanthology.org/P18-2033.pdf)
-- [Context-Aware Symptom Checking for Disease Diagnosis Using Hierarchical Reinforcement Learning](https://ojs.aaai.org/index.php/AAAI/article/view/11902)
 - [REFUEL: Exploring Sparse Features in Deep Reinforcement Learning for Fast Disease Diagnosis](https://proceedings.neurips.cc/paper/2018/hash/b5a1d925221b37e2e399f7b319038ba0-Abstract.html)
 - [End-to-End Knowledge-Routed Relational Dialogue System for Automatic Diagnosis](https://ojs.aaai.org/index.php/AAAI/article/view/4722)
 - [Generative Adversarial Regularized Mutual Information Policy Gradient Framework for Automatic Diagnosis](https://ojs.aaai.org/index.php/AAAI/article/view/5456)
