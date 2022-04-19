@@ -114,7 +114,7 @@ We show the accuracy for disease diagnosis (**Acc.**), recall for symptom recove
 | HRL (w/o grouped)       | 0.731 | 0.297 | 6.61  | 0.689 | 0.004 | 2.25  | 0.540 | 0.114 | 4.59  |
 | HRL (w/o discriminator) |  --   | 0.512 | 8.42  |  --   | 0.233 | 5.71  |  --   | 0.330 | 8.75  |
 | HRL                     | 0.779 | 0.424 | 8.61  | 0.735 | 0.229 | 5.08  | 0.556 | 0.295 | 6.99  |
-| Classifier Upper Bound  | 0.846 |  --   |  --   | 0.755 |  --   |  --   | 0.612 |  --   |  --   |
+| Classifier Upper Bound  | 0.846 |  --   |  --   | 0.755 |  --   |  --   | 0.706 |  --   |  --   |
 
 
 
