@@ -115,7 +115,7 @@ class AgentHRL_joint2(object):
             self.master.target_net.eval()
             for label, agent in self.id2lowerAgent.items():
                 #print(temp_parameter[label])
-                self.id2lowerAgent[label].dqn.restore_model(temp_parameter[label]['saved_model'])
+                self.id2lowerAgent[label].dqn.restore_model(temp_parameter[label]['load_model_path'])
                 self.id2lowerAgent[label].dqn.current_net.eval()
                 self.id2lowerAgent[label].dqn.target_net.eval()
 

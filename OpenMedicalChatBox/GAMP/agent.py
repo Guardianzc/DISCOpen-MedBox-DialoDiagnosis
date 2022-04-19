@@ -353,9 +353,10 @@ class Agent(object):
             if self.best_success_rate_test < self.success_rate_test:
                 self.best_success_rate_test = self.success_rate_test
                 self.best_avg_turns_test = self.avg_turns_test
-                self.save(self.path, epoch)
-                pickle.dump(file=open( self.parameter['model_savepath'].split('/')[-2] + '/records/' + '/' + self.run_time + '.p', 'wb'), obj=record)
-            
+                self.save(self.path, epoch, record)
+                
+
+
             # write
             #wandb.log({'success_rate' : self.success_rate, 'avg_turns' : self.avg_turns, 'avg_object' : self.avg_object, 'avg_recall' : self.avg_recall, 'avg_out': self.avg_out, \
             #           'success_rate_test' : self.success_rate_test, 'avg_turns_test' : self.avg_turns_test, 'avg_recall_test' : self.avg_recall_test, 'avg_outs_test' : self.avg_outs_test})
@@ -365,13 +366,15 @@ class Agent(object):
         self.save(self.path, epoch)
         return self.best_success_rate_test
     
-    def save(self, path, epoch):
+    def save(self, path, epoch, record):
         model_file_name = os.path.join(path, "s" + str(float(self.success_rate_test)) + "_obj" + str(self.avg_object) + "_t" + str(self.avg_turns_test)\
                     + "_mr" + str(self.avg_recall_test) + "_outs" + str(self.avg_outs_test) + "_e-" + str(epoch))
 
         torch.save(self.Generator.state_dict(), model_file_name + '_Generator.pkl')
         torch.save(self.Discriminator.state_dict(), model_file_name + '_Discriminator.pkl')
         torch.save(self.Inference.state_dict(), model_file_name + '_Inference.pkl')
+        pickle.dump(file=open( model_file_name + '_record.p', 'wb'), obj=record)
+            
  
     def load(self, path):
         self.Generator.load_state_dict(torch.load(path+ '_Generator.pkl'))

@@ -14,7 +14,7 @@ class AgentDQN(BaseAgent):
     def __init__(self, sym_dict=None, dise_dict=None, req_dise_sym_dict=None, dise_sym_num_dict=None,
                  tran_mat=None, dise_sym_pro=None, sym_dise_pro=None, sym_prio = None, act_set=None, slot_set=None, params=None, static_policy=False):
         super(AgentDQN, self).__init__()
-        self.device = torch.device("cuda:" + params.get('device', 0) if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cuda:" + params.get('device', '0') if torch.cuda.is_available() else "cpu")
         # parameters for DQN
         self.noisy = params.get('noisy', False)
         self.priority_replay = False

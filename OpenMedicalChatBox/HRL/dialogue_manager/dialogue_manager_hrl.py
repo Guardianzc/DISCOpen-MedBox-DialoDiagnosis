@@ -475,7 +475,7 @@ class DialogueManager_HRL(object):
                                    output_size=len(self.disease_symptom),
                                    parameter=self.parameter)
         if self.parameter.get("train_mode") == False:
-            temp_path = self.parameter.get("saved_model")
+            temp_path = self.parameter.get("load_model_path")
             path_list = temp_path.split('/')
             path_list.insert(-1, 'classifier')
             saved_model = '/'.join(path_list)

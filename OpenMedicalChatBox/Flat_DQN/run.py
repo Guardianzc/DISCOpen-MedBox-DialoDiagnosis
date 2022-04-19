@@ -27,7 +27,7 @@ def boolean_string(s):
 class Flat_DQN:
     def __init__(self, dataset_path, model_save_path, model_load_path, lr = 0.0005, groups = 4, cuda_idx = 0, train_mode = True, max_turn = 10, \
         reward_for_not_come_yet = 0, reward_for_success = 20, reward_for_fail = 0, reward_for_inform_right_symptom = 6, reward_for_reach_max_turn = -100, \
-            reward_for_repeated_action = -4, epoch_number = 5000, epoch_size = 100, experience_replay_size = 10000, batch_size = 100, discount_factor = 1, warm_start = False, warm_start_number = 30, greedy = 0.1):
+            reward_for_repeated_action = -4, epoch_number = 5000, epoch_size = 100, experience_replay_size = 10000, batch_size = 100, discount_factor = 1, warm_start = False, warm_start_number = 10, greedy = 0.1):
 
         disease_number = 10
         parser = argparse.ArgumentParser()
@@ -54,7 +54,7 @@ class Flat_DQN:
         parser.add_argument("--save_performance",dest="save_performance", type=boolean_string, default=False, help="save the performance? [True, False]")
         parser.add_argument("--save_model", dest="save_model", type=boolean_string, default=True,help="Save model during training? [True, False]")
         parser.add_argument("--save_model_path", dest="save_model_path", type=str, default=model_save_path)
-        parser.add_argument("--load_model_path", dest="load_model_path", type=str, default=model_load_path)
+        parser.add_argument("--saved_model", dest="saved_model", type=str, default=model_load_path)
         parser.add_argument("--save_dialogue", dest="save_dialogue", type=boolean_string, default=False, help="Save the dialogue? [True, False]")
         parser.add_argument("--save_record", dest="save_record", type=boolean_string, default=False, help="Save the record? [True, False]")
         parser.add_argument("--disease_remove", dest="disease_remove", type=boolean_string, default=False, help="Whether to predict a disease.")

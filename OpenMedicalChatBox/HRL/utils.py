@@ -64,7 +64,7 @@ def construct_info(params):
            "_epsilon" + str(epsilon) + \
            "_crs" + str(int(check_related_symptoms)) + \
            "_wfrs" + str(weight_for_reward_shaping) + \
-           "_RID" + str(run_id)
+           "_RID" + str(run_id) + '//'
     params['run_info'] = info
     checkpoint_path = params['save_model_path'] + dqn_type + "/checkpoint/" + info
     params["checkpoint_path"] = checkpoint_path

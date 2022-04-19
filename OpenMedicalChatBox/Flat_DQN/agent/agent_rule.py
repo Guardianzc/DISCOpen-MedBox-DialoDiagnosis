@@ -50,10 +50,9 @@ class AgentRule(Agent):
         :param state: a dict, the current dialogue state gotten from dialogue state tracker..
         :return: a list of candidate symptoms.
         """
-        inform_slots = state["current_slots"]["inform_slots"]
-        inform_slots.update(state["current_slots"]["explicit_inform_slots"])
+        
+        inform_slots = state["current_slots"]["explicit_inform_slots"]
         inform_slots.update(state["current_slots"]["implicit_inform_slots"])
-        wrong_diseases = state["current_slots"]["wrong_diseases"]
 
         # Calculate number of informed symptom for each disease.
         disease_match_number = {}
@@ -65,11 +64,11 @@ class AgentRule(Agent):
 
         for slot in inform_slots.keys():
             for disease in disease_match_number.keys():
-                if inform_slots[slot] in self.disease_symptom[disease]["symptom"] and inform_slots[slot] == True:
+                if slot in self.disease_symptom[disease]["Symptom"] and inform_slots[slot] == True:
                     disease_match_number[disease]["yes"] += 1
-                elif inform_slots[slot] in self.disease_symptom[disease]["symptom"] and inform_slots[slot] == dialogue_configuration.I_DO_NOT_KNOW:
+                elif slot in self.disease_symptom[disease]["Symptom"] and inform_slots[slot] == dialogue_configuration.I_DO_NOT_KNOW:
                     disease_match_number[disease]["not_sure"] += 1
-                elif inform_slots[slot] in self.disease_symptom[disease]["symptom"] and inform_slots[slot] == dialogue_configuration.I_DENY:
+                elif slot in self.disease_symptom[disease]["Symptom"] and inform_slots[slot] == dialogue_configuration.I_DENY:
                     disease_match_number[disease]["deny"] += 1
 
         # Get the ratio of informed symptom number to the number of symptoms of each disease.
@@ -82,10 +81,7 @@ class AgentRule(Agent):
 
         # Get the most probable disease that has not been wrongly informed
         sorted_diseases = sorted(disease_score.items(), key=lambda d: d[1], reverse=True)
-        for disease in sorted_diseases:
-            if disease[0] not in wrong_diseases:
-                match_disease = disease[0]
-                break
+        match_disease = sorted_diseases[1][0]
         # match_disease = max(disease_score.items(), key=lambda x: x[0220173244_AgentWithGoal_T22_lr0.0001_RFS44_RFF-22_RFNCY-1_RFIRS-1_mls0_gamma0.95_gammaW0.95_epsilon0.1_awd0_crs0_hwg0_wc0_var0_sdai0_wfrs0.0_dtft1_dataReal_World_RID3_DQN])[0] # Get the most probable disease that the user have.
         # Candidate symptom list of symptoms that belong to the most probable disease but have't been informed yet.
         candidate_symptoms = []

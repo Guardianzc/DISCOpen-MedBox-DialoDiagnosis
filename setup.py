@@ -1,10 +1,10 @@
 import setuptools
 
 VERSION = "test"
-with open("OpenMedicalChatBox/version.py", "r") as fver:
+with open("./OpenMedicalChatBox/version.py", "r") as fver:
     VERSION = fver.read().replace("VERSION", "").replace("=", "").replace("\"", "").strip()
 
-with open("README.md", "r", encoding="utf-8") as fh:
+with open("./Readme.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 requirements = []

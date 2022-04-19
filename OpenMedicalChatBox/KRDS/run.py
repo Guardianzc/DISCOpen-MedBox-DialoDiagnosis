@@ -26,7 +26,7 @@ class KRDS:
         #parser.add_argument('--data_folder', dest='data_folder', type=str, default='./Data/mz4/dataset_dxy/', help='folder to all data')
         parser.add_argument('--data_folder', dest='data_folder', type=str, default=dataset_path, help='folder to all data')
         parser.add_argument('--max_turn', dest='max_turn', default=max_turn * 2, type=int, help='maximum length of each dialog (default=20, 0=no maximum length)')
-        parser.add_argument('--device', dest='device', default=cuda_idx, type=int, help='maximum length of each dialog (default=20, 0=no maximum length)')
+        parser.add_argument('--device', dest='device', default=str(cuda_idx), type=str, help='cuda idx)')
         # episode(片段)总数 在计算强化学习的价值函数时，样本是一些片段
         parser.add_argument('--episodes', dest='episodes', default=epoch_number, type=int, help='Total number of episodes to run (default=1)')
         parser.add_argument('--epsilon', dest='epsilon', type=float, default=greedy, help='Epsilon to determine stochasticity(随机性) of epsilon-greedy agent policies')
@@ -40,7 +40,6 @@ class KRDS:
         parser.add_argument('--reward_for_reach_max_turn', dest='reward_for_reach_max_turn', default=reward_for_reach_max_turn, type=int, help='Whether train mode')
         parser.add_argument('--reward_for_repeated_action', dest='reward_for_repeated_action', default=reward_for_repeated_action, type=int, help='Whether train mode')
                                 
-
         # RL agent parameters
         parser.add_argument('--experience_replay_size', dest='experience_replay_size', type=int, default=experience_replay_size, help='the size for experience replay')
         parser.add_argument('--dqn_hidden_size', dest='dqn_hidden_size', type=int, default=60, help='the hidden size for DQN')
@@ -144,7 +143,7 @@ class KRDS:
 
 
 
-    def save_model(self, path, agent, cur_epoch, best_epoch=0, best_success_rate=0.0, best_ave_turns=0.0, tr_success_rate=0.0, te_success_rate=0.0,  best_hit = 0.0, phase="", is_checkpoint=False):
+    def save_model(self, request_state, path, agent, cur_epoch, best_epoch=0, best_success_rate=0.0, best_ave_turns=0.0, tr_success_rate=0.0, te_success_rate=0.0,  best_hit = 0.0, phase="", is_checkpoint=False):
         if not os.path.exists(path):
             os.makedirs(path)
         checkpoint = {}
@@ -156,9 +155,12 @@ class KRDS:
             checkpoint['test_success'] = te_success_rate
         else:
             file_name = '%s_%s_%s_%.3f_%.3f_%.3f.pth.tar' % (phase, best_epoch, cur_epoch, best_success_rate, best_ave_turns, best_hit)
+            pickle_name = '//%s_%s_%s_%.3f_%.3f_%.3f_%s_request.p' % (phase, best_epoch, cur_epoch, best_success_rate, best_ave_turns, best_hit, phase)
             checkpoint['best_success_rate'] = best_success_rate
             checkpoint['best_epoch'] = best_epoch
+            pickle.dump(file=open(path + pickle_name, 'wb'), obj=request_state)
         file_path = os.path.join(path, file_name)
+        
         torch.save(checkpoint, file_path)
 
 
@@ -273,7 +275,7 @@ class KRDS:
         # use rule policy, and record warm start experience
         params = self.params
         warm_start = params['warm_start']
-        if  params['trained_model_path'] is None and warm_start == 1 and self.params['mode'] == 'train':
+        if  params['trained_model_path'] is None and warm_start == 1 and self.params['mode']:
             print('warm_start starting ...')
             self.warm_start_simulation()
             print('warm_start finished, start RL training ...')
@@ -313,9 +315,9 @@ class KRDS:
 
             # evaluation and test
             #eval_res = eval(5 * simulation_epoch_size, train_set)
-            eval_res, request_state = self.test(len(self.goal_set['test']), 'test')
+            eval_res, eval_request_state = self.test(len(self.goal_set['test']), 'test')
 
-            test_res, request_state = self.test(len(self.goal_set['test']), 'test')
+            test_res, test_request_state = self.test(len(self.goal_set['test']), 'test')
 
             if test_res['success_rate'] > best_te_res['success_rate']:
                 best_te_model['model'] = self.agent.model.state_dict()
@@ -324,8 +326,8 @@ class KRDS:
                 best_te_res['ave_turns'] = test_res['ave_turns']
                 best_te_res['epoch'] = episode
                 best_te_res['hit_rate'] = test_res['hit_rate']
-                self.save_model(params['write_model_dir'],  self.agent, episode, best_epoch=best_te_res['epoch'],  best_success_rate=best_te_res['success_rate'],  best_ave_turns=best_te_res['ave_turns'], best_hit=best_te_res['hit_rate'] , phase="test")
-                pickle.dump(file=open('./records/' + params['write_model_dir'].split('/')[-2] + '/' + params['write_model_dir'].split('/')[-1] + '.p', 'wb'), obj=request_state)
+                self.save_model(eval_request_state, params['write_model_dir'],  self.agent, episode, best_epoch=best_te_res['epoch'],  best_success_rate=best_te_res['success_rate'],  best_ave_turns=best_te_res['ave_turns'], best_hit=best_te_res['hit_rate'] , phase="test")
+                
             # is not fix buffer, clear buffer when accuracy promotes
             if eval_res['success_rate'] >= best_res['success_rate']:
                 if eval_res['success_rate'] >= self.params['success_rate_threshold']:  # threshold = 0.30
@@ -338,8 +340,8 @@ class KRDS:
                 best_res['ave_turns'] = eval_res['ave_turns']
                 best_res['hit_rate'] = eval_res['hit_rate']
                 best_res['epoch'] = episode
-                self.save_model(params['write_model_dir'], self.agent, episode, best_epoch=best_res['epoch'], best_success_rate=best_res['success_rate'], best_ave_turns=best_res['ave_turns'], best_hit=best_res['hit_rate'] , phase="eval")
-            self.save_model(params['write_model_dir'], self.agent, episode, is_checkpoint=True)  # save checkpoint each episode
+                self.save_model(test_request_state, params['write_model_dir'], self.agent, episode, best_epoch=best_res['epoch'], best_success_rate=best_res['success_rate'], best_ave_turns=best_res['ave_turns'], best_hit=best_res['hit_rate'] , phase="eval")
+            self.save_model(test_request_state, params['write_model_dir'], self.agent, episode, is_checkpoint=True)  # save checkpoint each episode
 
     def generate_actions(self):
         ############################################################################
