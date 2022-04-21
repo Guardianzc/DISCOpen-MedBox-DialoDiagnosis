@@ -10,6 +10,8 @@ Due to the lack of open source for existing RL-base automated diagnosis methods.
 
 At [here](./Data/Readme.md), we show all the mentioned datasets in existing medical methods, including MZ-4, Dxy, MZ-10 and a simulated dataset based on [Symcat](http://www.symcat.com/). In **goal.set** in their folders, explicit symptoms, implicit symptoms and diagnosis given by doctors are recorded for each sample. Also, we provide the corresponding tools to extend them for each methods. 
 
+We temporarily withdraw the mz-10 dataset for evaluation on the Ali-Tianchi competition.
+
 Here is the overview of datasets.
 
 |     Name     | # of user goal | # of diseases | Ave. # of im. sym | # of sym. |
