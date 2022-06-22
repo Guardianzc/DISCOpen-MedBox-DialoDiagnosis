@@ -44,7 +44,7 @@ pip install OpenMedicalChatBox
    or Cloning this repo
 
 ```python
-git clone https://github.com/Guardianzc/OpenMedicalChatBox.git
+git clone https://github.com/FudanDISC/DISCOpen-MedBox-DialoDiagnosis.git
 cd OpenMedicalChatBox
 python setup.py install
 ```
