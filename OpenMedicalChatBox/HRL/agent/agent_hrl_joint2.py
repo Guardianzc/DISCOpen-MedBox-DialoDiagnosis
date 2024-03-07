@@ -105,7 +105,7 @@ class AgentHRL_joint2(object):
         self.count = 0
         self.subtask_terminal = True
         self.subtask_turn = 0
-        self.subtask_max_turn = 5
+        self.subtask_max_turn = 2
         self.past_lower_agent_pool = {key: 0 for key in self.id2lowerAgent.keys()}
 
         if parameter.get("train_mode") is False:
